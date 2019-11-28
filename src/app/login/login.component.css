@@ -1,0 +1,12 @@
+.login-form {
+    padding: 50px;
+    background-color: rgb(251, 83, 83);
+    color: white;
+}
+
+a {
+    color: white;
+}
+a:hover {
+    cursor: pointer;
+}

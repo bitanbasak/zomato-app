@@ -12,7 +12,7 @@ export class RestaurantsService {
 
   constructor(private httpClient: HttpClient) {
     this.apiKey = '057d9923b9032fff7b1f3ba562d2643f';
-    this.apiUrl = 'https://developers.zomato.com/api/v2.1';
+    this.apiUrl = 'https://developers.zomato.com/api/v2.1/search';
   }
 
   getCollections(): Observable<any> {

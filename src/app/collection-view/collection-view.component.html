@@ -1,4 +1,19 @@
+<div class="lds-spinner" *ngIf="collections.length === 0">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
 <div class="card-deck">
-    <app-restaurant-card [restaurant]="collection.restaurant" *ngFor="let collection of collections">
-    </app-restaurant-card>
+  <app-restaurant-card [restaurant]="collection.restaurant" *ngFor="let collection of collections">
+  </app-restaurant-card>
 </div>

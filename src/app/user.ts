@@ -1,8 +1,10 @@
+import { Restaurant } from './restaurant';
+
 export class User {
     id: number;
     email: string;
     password: string;
-    favourites: Array<string>;
+    favourites: Array<Restaurant>;
 
     constructor() {
         this.id = 0;

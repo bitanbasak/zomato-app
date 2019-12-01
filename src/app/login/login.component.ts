@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthServiceService } from '../services/auth-service.service';
 import { User } from '../user';
 import { RouterService } from '../services/router.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   isRegistered = false;
   loginForm: FormGroup;
   user: User = new User();
-  constructor(private authService: AuthServiceService, private routerService: RouterService) { }
+  constructor(private authService: AuthServiceService, private routerService: RouterService, private userService: UserService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
           if (userData) {
             this.authService.setBearerToken(userData.id);
             this.authService.isLoggedIn = true;
+            this.userService.user = userData;
             this.routerService.goToHomePage();
           } else {
             console.log('User does not exist');

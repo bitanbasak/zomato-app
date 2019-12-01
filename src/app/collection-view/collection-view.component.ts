@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantsService } from '../services/restaurants.service';
+import { Restaurant } from '../restaurant';
+import { UserService } from '../services/user.service';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-collection-view',
@@ -7,23 +10,39 @@ import { RestaurantsService } from '../services/restaurants.service';
   styleUrls: ['./collection-view.component.css']
 })
 export class CollectionViewComponent implements OnInit {
+  restaurant: Restaurant;
+  collections: Array<Restaurant>;
 
-  collections: Array<any>;
-
-  constructor(private restaurantsService: RestaurantsService) {
+  constructor(private restaurantsService: RestaurantsService,
+    private userService: UserService,
+    private authService: AuthServiceService) {
     this.collections = [];
+    this.restaurant = new Restaurant();
   }
 
   ngOnInit() {
     this.fetchRestaurants();
+    this.authService.isAuthenticated().then(authenticated => {
+      if (authenticated) {
+        this.userService.getUserData();
+      }
+    }, error => console.log(error));
   }
 
   fetchRestaurants() {
     this.restaurantsService.getCollections().subscribe(
       data => {
         console.log(data.restaurants);
-        this.collections = data.restaurants;
-        // console.log(this.collections);s
+        data.restaurants.forEach(
+          res => {
+            this.restaurant.name = res.restaurant.name;
+            this.restaurant.cuisines = res.restaurant.cuisines;
+            this.restaurant.featuredImage = res.restaurant.featured_image;
+            this.collections.push(this.restaurant);
+            this.restaurant = new Restaurant();
+          }
+        );
+        console.log(this.collections);
       },
       error => console.log(error.message)
     );

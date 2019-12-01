@@ -27,7 +27,7 @@ export class AuthServiceService {
   isAuthenticated() {
     const promise = new Promise(
       (resolve, reject) => {
-        if (sessionStorage.getItem('email')) {
+        if (sessionStorage.getItem('id')) {
           resolve(true);
         } else {
           reject(false);
@@ -36,6 +36,7 @@ export class AuthServiceService {
     );
     return promise;
   }
+
 
   logoutUser() {
     sessionStorage.removeItem('id');

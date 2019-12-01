@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantsService } from './services/restaurants.service';
+import { AuthServiceService } from './services/auth-service.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,7 @@ import { RestaurantsService } from './services/restaurants.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private restaurantsService: RestaurantsService) { }
+  constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }

@@ -5,9 +5,14 @@
       "password": "password",
       "favourites": [
         {
-          "name": "Brahma Brews",
-          "cuisines": "Bar Food, Asian, Italian, North Indian, South Indian",
-          "featuredImage": "https://b.zmtcdn.com/data/pictures/6/18853706/9b437dc670e7284a99e1ab9cfc8b2703.jpg"
+          "name": "Shanmukha",
+          "cuisines": "Biryani, North Indian, Andhra, Chinese",
+          "featuredImage": "https://b.zmtcdn.com/data/pictures/5/52015/9a51034cd073de83a84ef133fe0b1945.jpg"
+        },
+        {
+          "name": "The Bier Library",
+          "cuisines": "Continental, North Indian, Pizza, BBQ",
+          "featuredImage": "https://b.zmtcdn.com/data/pictures/9/18843699/87bf822f84f8cf65aa4b7095099ef33b.jpg"
         }
       ],
       "id": 1

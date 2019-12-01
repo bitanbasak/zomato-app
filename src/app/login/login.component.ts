@@ -14,12 +14,16 @@ export class LoginComponent implements OnInit {
   isRegistered = false;
   loginForm: FormGroup;
   user: User = new User();
-  constructor(private authService: AuthServiceService, private routerService: RouterService, private userService: UserService) { }
+  errMessage: string;
+
+  constructor(private authService: AuthServiceService, private routerService: RouterService, private userService: UserService) {
+    this.errMessage = '';
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required])
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
@@ -36,16 +40,16 @@ export class LoginComponent implements OnInit {
             this.userService.user = userData;
             this.routerService.goToHomePage();
           } else {
-            console.log('User does not exist');
+            this.errMessage = `The user with email ${this.user.email} does not exists in our database. Please register first!`
           }
-        }
+        }, error => this.errMessage = error.message
       );
       // this.authService.setBearerToken(userData.email);
     } else {
       console.log('user registration block');
       this.authService.registerUser(this.user).subscribe(
         data => console.log(data),
-        error => console.log(error.message)
+        error => this.errMessage = error.message
       );
     }
     this.toggleIsRegistered();

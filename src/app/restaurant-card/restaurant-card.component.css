@@ -1,5 +1,5 @@
 .card {
-  height: 400px;
+  height: 450px;
   text-align: center;
   margin-bottom: 5px;
 }
@@ -9,7 +9,7 @@
 }
 
 a {
-  color: rgb(207, 1, 1);
+  color: #CB202D;
 }
 
 a:hover {
@@ -18,5 +18,5 @@ a:hover {
 
 .favourite {
   color: white;
-  background-color: rgb(207, 1, 1);
+  background-color: #CB202D;
 }

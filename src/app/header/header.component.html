@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/">Zomato</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,18 +6,32 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <fa-icon [icon]="faUserTie"></fa-icon>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p class="text-center"><strong>Welcome</strong> {{ userService.user.email }}!</p>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="favourites">Your favourites
+            <span class="badge badge-danger">{{ userService.favouritesCount }}</span>
+            <fa-icon [icon]="faHeart"></fa-icon>
+          </a>
+          <a class="dropdown-item" href="#">Profile <fa-icon [icon]="faUserTie"></fa-icon></a>
+          <div class="dropdown-divider"></div>
+          <button class="btn btn-danger m-1" (click)="onLogout()">Logout</button>
+        </div>
       </li>
     </ul>
+    <a class="navbar-brand mr-auto" routerLink="/">Zomato</a>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
     <button *ngIf="!authService.isLoggedIn" class="btn btn-success m-1" routerLink="/login">Login</button>
-    <button *ngIf="authService.isLoggedIn" class="btn btn-danger m-1" (click)="onLogout()">Logout</button>
   </div>
 </nav>

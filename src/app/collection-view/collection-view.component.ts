@@ -23,16 +23,13 @@ export class CollectionViewComponent implements OnInit {
   ngOnInit() {
     this.fetchRestaurants();
     this.authService.isAuthenticated().then(authenticated => {
-      if (authenticated) {
-        this.userService.getUserData();
-      }
+      this.userService.getUserData();
     }, error => console.log(error));
   }
 
   fetchRestaurants() {
     this.restaurantsService.getCollections().subscribe(
       data => {
-        console.log(data.restaurants);
         data.restaurants.forEach(
           res => {
             this.restaurant.name = res.restaurant.name;
@@ -42,7 +39,6 @@ export class CollectionViewComponent implements OnInit {
             this.restaurant = new Restaurant();
           }
         );
-        console.log(this.collections);
       },
       error => console.log(error.message)
     );

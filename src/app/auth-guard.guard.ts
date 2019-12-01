@@ -16,7 +16,7 @@ export class AuthGuardGuard implements CanActivate {
       if (authenticated) {
         return true;
       }
-
+    }, reject => {
       this.routerService.goToLoginPage();
       return false;
     });

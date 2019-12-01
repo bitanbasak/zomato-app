@@ -1,7 +1,31 @@
 .bg-light {
-  background-color: rgb(255, 61, 61) !important;
+  background-color: #CB202D !important;
 }
 
 a {
   color: white !important;
+}
+
+.navbar {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.dropdown-menu {
+  /* text-align: center; */
+  min-width: 15rem;
+  box-shadow: 0px 0px 5px grey;
+}
+
+.dropdown-menu>a {
+  color: black !important;
+  padding: 10px;
+}
+
+.dropdown-menu>a>fa-icon {
+  color: #CB202D;
+  float: right;
+}
+
+.btn-danger {
+  width: 96%;
 }

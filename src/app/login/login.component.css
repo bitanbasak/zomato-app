@@ -1,6 +1,6 @@
 .login-form {
   padding: 50px;
-  background-color: rgb(255, 61, 61);
+  background-color: #CB202D;
   color: white;
 }
 
@@ -10,4 +10,8 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+.alert-box {
+  margin-top: 4px;
 }

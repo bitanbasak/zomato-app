@@ -14,10 +14,14 @@ import { RestaurantCardComponent } from './restaurant-card/restaurant-card.compo
 import { HeaderComponent } from './header/header.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { FavouritesComponent } from './favourites/favourites.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   { path: '', component: CollectionViewComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'favourites', component: FavouritesComponent, canActivate: [AuthGuardGuard] },
+  // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardGuard] }
 ]
 
 @NgModule({
@@ -26,7 +30,8 @@ const routes: Routes = [
     CollectionViewComponent,
     RestaurantCardComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

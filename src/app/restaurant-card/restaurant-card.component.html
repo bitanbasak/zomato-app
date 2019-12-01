@@ -1,9 +1,10 @@
 <div class="card" style="width: 18rem;">
   <img src="{{restaurant.featuredImage}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ restaurant.name }}</h5>
+  <div class="card-body d-flex flex-column">
+    <h4 class="card-title">{{ restaurant.name }}</h4>
     <p class="card-text">{{ restaurant.cuisines }}</p>
-    <a class="btn btn-outline-danger float-left" (click)="addToFavourites()" [ngClass]="{favourite: getFavourites()}">
+    <a class="btn btn-outline-danger float-left mt-auto" (click)="addToFavourites()"
+      [ngClass]="{favourite: getFavourites()}">
       <fa-icon [icon]="faHeart"></fa-icon>
     </a>
   </div>

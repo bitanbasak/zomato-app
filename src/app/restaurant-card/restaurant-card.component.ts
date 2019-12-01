@@ -15,7 +15,6 @@ export class RestaurantCardComponent implements OnInit {
   @Input() restaurant: Restaurant;
   faHeart = faHeart;
   user: User = new User();
-  isFavourited = false;
 
   constructor(private authService: AuthServiceService, private routerService: RouterService, private userService: UserService) { }
 
@@ -24,41 +23,15 @@ export class RestaurantCardComponent implements OnInit {
 
   addToFavourites() {
     this.authService.isAuthenticated().then(authenticated => {
-      if (authenticated) {
-        if (this.userService.user.favourites.findIndex((res: Restaurant) => res.name === this.restaurant.name) === -1) {
-          this.userService.user.favourites.push(this.restaurant);
-          this.userService.updateUserData();
-        } else {
-          this.userService.user.favourites.splice(
-            this.userService.user.favourites.findIndex((res: Restaurant) => res.name === this.restaurant.name), 1);
-          this.userService.updateUserData();
-        }
+      if (this.userService.user.favourites.findIndex((res: Restaurant) => res.name === this.restaurant.name) === -1) {
+        this.userService.user.favourites.push(this.restaurant);
+        this.userService.updateUserData();
+      } else {
+        this.userService.user.favourites.splice(
+          this.userService.user.favourites.findIndex((res: Restaurant) => res.name === this.restaurant.name), 1);
+        this.userService.updateUserData();
       }
-    })
-    // if (parseInt(this.authService.getBearerToken())) {
-    //   // this.authService.getUserData(parseInt(this.authService.getBearerToken())).subscribe(
-    //   //   data => {
-    //   //     this.user = data;
-    //   if (this.user.favourites.findIndex(res => res === this.restaurant) === -1) {
-    //     this.user.favourites.push(this.restaurant);
-    //     this.authService.updateUserData(this.user).subscribe(
-    //       updatedData => console.log(updatedData),
-    //       error => console.log(error.message)
-    //     );
-    //     //   },
-    //     //   error => console.log(error.message)
-    //     // )
-    //   } else {
-    //     this.user.favourites.splice(this.user.favourites.findIndex(res => res === this.restaurant), 1);
-    //     this.authService.updateUserData(this.user).subscribe(
-    //       updatedData => console.log(updatedData),
-    //       error => console.log(error.message)
-    //     );
-    //   }
-    // } else {
-    //   this.routerService.goToLoginPage();
-    // }
-
+    }, reject => this.routerService.goToLoginPage());
   }
 
   getFavourites() {

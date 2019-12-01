@@ -10,14 +10,19 @@ import { AuthServiceService } from './auth-service.service';
 export class UserService {
 
   user: User;
+  favouritesCount: number;
 
   constructor(private httpClient: HttpClient, private authService: AuthServiceService) {
     this.user = new User();
+    this.favouritesCount = 0;
   }
 
   getUserData() {
     this.httpClient.get<User>(`http://localhost:3000/users/${this.authService.getBearerToken()}`).subscribe(
-      data => this.user = data,
+      data => {
+        this.user = data;
+        this.favouritesCount = data.favourites.length;
+      },
       error => console.log(error.message)
     );
   }
@@ -25,7 +30,10 @@ export class UserService {
   updateUserData() {
     console.log(this.user);
     this.httpClient.put<User>(`http://localhost:3000/users/${this.user.id}`, this.user).subscribe(
-      data => this.user = data,
+      data => {
+        this.user = data;
+        this.favouritesCount = data.favourites.length;
+      },
       error => console.log(error.message)
     );
   }

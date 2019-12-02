@@ -37,4 +37,9 @@ export class UserService {
       error => console.log(error.message)
     );
   }
+
+  resetUser() {
+    this.user = new User();
+    this.favouritesCount = 0;
+  }
 }

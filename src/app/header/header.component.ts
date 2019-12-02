@@ -3,6 +3,9 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { faUserTie, faHeart } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap';
 import { UserService } from '../services/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { RestaurantsService } from '../services/restaurants.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +16,15 @@ export class HeaderComponent implements OnInit {
   faUserTie = faUserTie;
   faHeart = faHeart;
 
-  constructor(private authService: AuthServiceService, private userService: UserService) {
+  searchForm: FormGroup;
+
+  constructor(private authService: AuthServiceService, private userService: UserService, private restaurantsService: RestaurantsService) {
   }
 
   ngOnInit() {
+    this.searchForm = new FormGroup({
+      searchField: new FormControl(null, Validators.required)
+    })
     if (this.authService.getBearerToken()) {
       this.authService.isLoggedIn = true;
     }
@@ -24,7 +32,12 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logoutUser();
+    this.userService.resetUser();
     this.authService.isLoggedIn = false;
+  }
+
+  onSubmit() {
+    this.restaurantsService.getCityCode(this.searchForm.get('searchField').value);
   }
 
 }

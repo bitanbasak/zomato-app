@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { AuthServiceService } from '../services/auth-service.service';
 import { User } from '../user';
 import { RouterService } from '../services/router.service';
@@ -46,7 +47,6 @@ export class LoginComponent implements OnInit {
       );
       // this.authService.setBearerToken(userData.email);
     } else {
-      console.log('user registration block');
       this.authService.registerUser(this.user).subscribe(
         data => console.log(data),
         error => this.errMessage = error.message

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import { AuthServiceService } from '../services/auth-service.service';
 import { User } from '../user';
 import { RouterService } from '../services/router.service';
@@ -14,7 +15,6 @@ import { Restaurant } from '../restaurant';
 export class RestaurantCardComponent implements OnInit {
   @Input() restaurant: Restaurant;
   faHeart = faHeart;
-  user: User = new User();
 
   constructor(private authService: AuthServiceService, private routerService: RouterService, private userService: UserService) { }
 

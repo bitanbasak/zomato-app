@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -44,13 +45,5 @@ export class AuthServiceService {
 
   registerUser(user: User): Observable<User> {
     return this.httpClient.post<User>('http://localhost:3000/users', user);
-  }
-
-  getUserData(id: number): Observable<User> {
-    return this.httpClient.get<User>(`http://localhost:3000/users/${id}`);
-  }
-
-  updateUserData(user: User): Observable<User> {
-    return this.httpClient.put<User>(`http://localhost:3000/users/${user.id}`, user);
   }
 }

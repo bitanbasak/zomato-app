@@ -1,20 +1,13 @@
-<div class="lds-spinner" *ngIf="collections.length === 0">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{ restaurantsService.cityName }}</h1>
+    <p class="lead">The delicacies of {{ restaurantsService.cityName }}.</p>
+  </div>
 </div>
-<h3>{{ restaurantsService.cityName }}</h3>
-<hr />
-<div class="card-deck">
-  <app-restaurant-card [restaurant]="restaurant" *ngFor="let restaurant of restaurantsService.restaurants">
-  </app-restaurant-card>
+<div class="container-fluid">
+  <div class="card-deck d-flex">
+    <app-restaurant-card class="mx-auto" [restaurant]="restaurant"
+      *ngFor="let restaurant of restaurantsService.restaurants">
+    </app-restaurant-card>
+  </div>
 </div>

@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.user.email = this.loginForm.get('email').value;
     this.user.password = this.loginForm.get('password').value;
+    this.errMessage = "";
     if (!this.isRegistered) {
       this.authService.authenticateUser().subscribe(
         data => {
@@ -47,9 +48,18 @@ export class LoginComponent implements OnInit {
       );
       // this.authService.setBearerToken(userData.email);
     } else {
-      this.authService.registerUser(this.user).subscribe(
-        data => console.log(data),
-        error => this.errMessage = error.message
+      this.authService.authenticateUser().subscribe(
+        data => {
+          const userData = data.find(u => (u.email === this.user.email));
+          if (userData) {
+            this.errMessage = "User already exists! Please Login!"
+          } else {
+            this.authService.registerUser(this.user).subscribe(
+              data => console.log(data),
+              error => this.errMessage = error.message
+            );
+          }
+        }, error => this.errMessage = error.message
       );
     }
     this.toggleIsRegistered();

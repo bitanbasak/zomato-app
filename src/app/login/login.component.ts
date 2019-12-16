@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
           }
         }, error => this.errMessage = error.message
       );
-      // this.authService.setBearerToken(userData.email);
     } else {
       this.authService.authenticateUser().subscribe(
         data => {
